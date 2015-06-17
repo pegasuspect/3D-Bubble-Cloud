@@ -120,6 +120,7 @@ div#frame {
 .bubble {
   background-color: rgba(40, 186, 192, 0.83);
   color: #333;
+  text-align: center;
 }
 
 ul {

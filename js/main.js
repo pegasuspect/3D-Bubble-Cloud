@@ -8,7 +8,7 @@ var options = {
 	frameDepth: 320,
 	frameWidth: 320,
 	frameHeight: 320,
-	isGenerateRandom: true,
+	isGenerateRandom: false,
 	numberOfBubble: 20,
 	frameSelector: "#frame"
 }
@@ -27,34 +27,35 @@ function WordBubble3D(optionsOverride){
 		options.frameDepth = optionsOverride.frameDepth || options.frameDepth;
 	}
 
-	if (options.isGenerateRandom) {
-		//generate bubbles on random locations
-		for (var i = options.numberOfBubble - 1; i >= 0; i--) {
-			this.bubbles.push(new Vector3D(
-				Math.random() * options.frameWidth, 
-				Math.random() * options.frameHeight, 
-				Math.random() * options.frameDepth 
-				)
-			);
-		}
-
-		//create frame if it does not exist
-		if($(options.frameSelector).size() == 0){
-			$("body").prepend($("<div>").attr("id", "frame"));
-		}
-		$(options.frameSelector).parent().append($("<div>").attr("id", "frameMask").css({
-			zIndex: options.frameDepth * 100,
-			width: "100%",
-			height: options.frameHeight + parseInt($(options.frameSelector).css("margin-bottom")),
-			"margin-top": $(options.frameSelector).css("margin-top"),
-  			position: "absolute",
-  			top: $(options.frameSelector).position().top,
-  			left: 0
-		}));
-		// add bubbles to frame
-		for (var i = this.bubbles.length - 1; i >= 0; i--) {
-			$(options.frameSelector).append(this.bubbles[i].element);
-		}
+	if (!options.isGenerateRandom)
+		options.numberOfBubble = $(options.frameSelector).children().size();
+	
+	//generate bubbles on random locations
+	for (var i = options.numberOfBubble - 1; i >= 0; i--) {
+		this.bubbles.push(new Vector3D(
+			Math.random() * options.frameWidth, 
+			Math.random() * options.frameHeight, 
+			Math.random() * options.frameDepth,
+			options.isGenerateRandom ? false : $(options.frameSelector).children().eq(i).text()
+			)
+		);
+	}
+	//create frame if it does not exist
+	if($(options.frameSelector).size() == 0){
+		$("body").prepend($("<div>").attr("id", "frame"));
+	}
+	$(options.frameSelector).parent().append($("<div>").attr("id", "frameMask").css({
+		zIndex: options.frameDepth * 100,
+		width: "100%",
+		height: options.frameHeight + parseInt($(options.frameSelector).css("margin-bottom")),
+		"margin-top": $(options.frameSelector).css("margin-top"),
+		position: "absolute",
+		top: $(options.frameSelector).position().top,
+		left: 0
+	}));
+	// add bubbles to frame
+	for (var i = this.bubbles.length - 1; i >= 0; i--) {
+		$(options.frameSelector).append(this.bubbles[i].element);
 	}
 }
 
@@ -64,11 +65,13 @@ WordBubble3D.prototype.rotateBubbles = function(rotation_on_x, rotation_on_y){
 	}
 }
 
-function Vector3D(x, y, z){
+function Vector3D(x, y, z, content){
 	this.x = x - options.origin.x;
 	this.y = y - options.origin.y;
 	this.z = z - options.origin.z;
 	
+	this.content = content || (this.x + ", " + this.y + ", " + this.z);
+
 	// round the values so human can read easily
 	this.roundCoordinates();
 
@@ -77,7 +80,7 @@ function Vector3D(x, y, z){
 
 	this.element = $("<div>").addClass("bubble noTextSelect")
 		.css("position", "absolute")
-		.text(this.x + ", " + this.y + ", " + this.z);
+		.text(this.content);
 
 	this.animate();
 
