@@ -36,7 +36,7 @@ function WordBubble3D(optionsOverride){
 			Math.random() * options.frameWidth, 
 			Math.random() * options.frameHeight, 
 			Math.random() * options.frameDepth,
-			options.isGenerateRandom ? false : $(options.frameSelector).children().eq(i).text()
+			options.isGenerateRandom ? false : $(options.frameSelector).children().eq(i).html()
 			)
 		);
 	}
