@@ -117,6 +117,10 @@ textarea {
   user-select: none;
 }
 
+h1 {
+  text-align: center;
+}
+
 .bubble {
   background-color: rgba(40, 186, 192, 0.83);
   color: #333;
