@@ -97,11 +97,11 @@ textarea {
 
 
 
-div#frame {
+#frame {
     position: relative;
     width: 320px;
     height: 320px;
-    border: 1px solid;
+    border: 1px dashed;
     margin: 40px auto;
     overflow: visible;
     text-align: center;

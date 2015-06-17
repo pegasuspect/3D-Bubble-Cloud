@@ -44,6 +44,7 @@ function WordBubble3D(optionsOverride){
 	if($(options.frameSelector).size() == 0){
 		$("body").prepend($("<div>").attr("id", "frame"));
 	}
+	$(options.frameSelector).html("");
 	$(options.frameSelector).parent().append($("<div>").attr("id", "frameMask").css({
 		zIndex: options.frameDepth * 100,
 		width: "100%",
