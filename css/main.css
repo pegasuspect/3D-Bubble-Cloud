@@ -97,17 +97,38 @@ textarea {
 
 
 
+div#frame {
+    position: relative;
+    width: 320px;
+    height: 320px;
+    border: 1px solid;
+    margin: 40px auto;
+    overflow: visible;
+    text-align: center;
+    font-size: 22px;
+}
 
+.noTextSelect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 
+.bubble {
+  background-color: rgba(40, 186, 192, 0.83);
+  color: #333;
+}
 
+ul {
+    list-style: none;
+}
 
-
-
-
-
-
-
-
+ul > li {
+    display: inline-block;
+}
 
 
 
