@@ -40,12 +40,12 @@ function WordBubble3D(optionsOverride){
 			)
 		);
 	}
+
 	//create frame if it does not exist
 	if($(options.frameSelector).size() == 0){
 		$("body").prepend($("<div>").attr("id", "frame"));
 	}
-	$(options.frameSelector).html("");
-	$(options.frameSelector).parent().append($("<div>").attr("id", "frameMask").css({
+	$(options.frameSelector).html("").parent().append($("<div>").attr("id", "frameMask").css({
 		zIndex: options.frameDepth * 100,
 		width: "100%",
 		height: options.frameHeight + parseInt($(options.frameSelector).css("margin-bottom")),
@@ -184,7 +184,7 @@ $("#frameMask").mousemove(function( event ) {
   var deltaX = event.offsetX - oldX;
   
   //console.log(deltaX, deltaY);
-  wordBubble.rotateBubbles(deltaX * options.angularSpeed, deltaY * options.angularSpeed);
+  wordBubble.rotateBubbles(-deltaX * options.angularSpeed, deltaY * options.angularSpeed);
 
   oldX = event.offsetX;
   oldY = event.offsetY;
