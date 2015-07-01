@@ -11,6 +11,8 @@
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/BubbleCloud3D.css">
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
     </head>
     <body>
         <!--[if lt IE 8]>
@@ -41,12 +43,44 @@
             <li>aliqua.</li>
             <li>Ut</li>
         </ul>
+
+        <ul class="frame">
+            <li>Lorem</li>
+            <li>ipsum</li>
+            <li>dolor</li>
+            <li>sit</li>
+            <li>amet,</li>
+            <li>consectetur</li>
+            <li>adipiscing</li>
+            <li>elit,</li>
+            <li>sed</li>
+            <li>do</li>
+            <li>eiusmod</li>
+            <li>tempor</li>
+            <li>incididunt</li>
+            <li>ut</li>
+            <li>labore</li>
+            <li>et</li>
+            <li>dolore</li>
+            <li>magna</li>
+            <li>aliqua.</li>
+            <li>Ut</li>
+        </ul>
+        <div class="frame">
+            <script id="imageGenerator" type="text/javascript">
+                var html = "";
+                for (var i = 0; i < 10; i++) {
+                    html += "<div><img src='http://placehold.it/" + 200 * (i % 2 + 1) + "x150'></div>";
+                }
+                document.write(html);
+                $("script#imageGenerator").remove();
+            </script>
+        </div>
+
         <div style="text-align: center;margin: 250px auto 40px;">
             <small>Note that this code is written to work with touch devices where 
                 mousemove event fires while moving the thumb on the screen.</small>
         </div>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
         <script src="js/plugins.js"></script>
         <script src="js/BubbleCloud3D.js"></script>
         <script type="text/javascript">

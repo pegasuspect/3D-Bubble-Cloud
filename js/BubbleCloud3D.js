@@ -1,21 +1,16 @@
 (function ( $ ) {
-	settings = {}
+	//settings = {}
 
 	var ONE_DEGREE = Math.PI/180;
 
 	$.fn.create3DBubbleCloud = function(options) {
-		settings = $.extend({
-            angularSpeed: 0.5,
-			distributeBubblesRandomly: false,
-			showBubblesOutOfFrameBorders: true
-        }, options );
-
 		return this.each(function(index, el) {
-			settings.frameId = this.id = this.id || "frame" + index;
+			if(!options) options = {};
+			options.frameId = this.id = this.id || "frame" + index;
 			$(this).css({
 				"position": "relative",
 				"margin": "0 auto",
-				"overflow": settings.showBubblesOutOfFrameBorders ? "visible" : "hidden",
+				"overflow": options.showBubblesOutOfFrameBorders ? "visible" : "hidden",
 				"text-align": "center"
 			});
 	        new BubbleCloud3D(options);
@@ -26,7 +21,7 @@
 
 		this.init(options);
 
-		if(settings.distributeBubblesRandomly)
+		if(this.settings.distributeBubblesRandomly)
 			this.createRandomlyDistributedBubbles();
 		else this.createEvenlyDistributedBubbles();
 
@@ -37,17 +32,43 @@
 		}
 	}
 
+	BubbleCloud3D.prototype.init = function(options){
+		this.settings = $.extend({
+            angularSpeed: 0.5,
+			distributeBubblesRandomly: false,
+			showBubblesOutOfFrameBorders: true
+        }, options );
+
+		this.bubbles = [];
+		
+		this.settings.frameSelector = "#" + this.settings.frameId;
+
+		var el = $(this.settings.frameSelector)
+		var frameSize = Math.max(Math.min(el.width(), el.height()), 320);
+		this.settings.frameWidth = this.settings.frameHeight = this.settings.frameDepth = frameSize;
+		el.css({"font-size" : frameSize/12}).height(frameSize).width(frameSize);
+		console.log(frameSize);
+
+		var fixedLength = this.fixSizeForSphereBoundries(frameSize);
+		var extra = frameSize - fixedLength;
+		this.settings.origin = {};
+		this.settings.origin.x = this.settings.origin.y = this.settings.origin.z = (fixedLength + extra)/2;
+		 //= fixedLength/2;
+
+		this.numberOfBubbles = el.children().size();
+	}
+
 	BubbleCloud3D.prototype.addBubblesToFrame = function(){
 		// add bubbles to frame
 		for (var i = this.bubbles.length - 1; i >= 0; i--) {
-			$(settings.frameSelector).append(this.bubbles[i].element);
+			$(this.settings.frameSelector).append(this.bubbles[i].element);
 		}
 	}
 	BubbleCloud3D.prototype.attachEventHandlerToFrameMask = function(){
 		var oldX, oldY;
 		var that = this;
 		// attach the event handler
-		$("#"+settings.frameId+"Mask").mousemove(function( event ) {
+		$("#"+this.settings.frameId+"Mask").mousemove(function( event ) {
 			if (!oldX) oldX = event.offsetX;
 			if (!oldY) oldY = event.offsetY;
 
@@ -55,7 +76,7 @@
 			var deltaX = event.offsetX - oldX;
 
 			//console.log(deltaX, deltaY);
-			that.rotateBubbles(-deltaX * settings.angularSpeed, deltaY * settings.angularSpeed);
+			that.rotateBubbles(-deltaX * that.settings.angularSpeed, deltaY * that.settings.angularSpeed);
 
 			oldX = event.offsetX;
 			oldY = event.offsetY;
@@ -63,63 +84,38 @@
 	}
 	BubbleCloud3D.prototype.createFrameMask = function(){
 		//create a frame mask to attach mouse move event
-		$(settings.frameSelector).html("").parent().append($("<div>").attr("id", settings.frameId + "Mask").css({
-			zIndex: settings.frameDepth * 100,
+		$(this.settings.frameSelector).html("").parent().append($("<div>").attr("id", this.settings.frameId + "Mask").css({
+			zIndex: this.settings.frameDepth * 100,
 			width: "100%",
-			height: settings.frameHeight * 4/3,
-			//"padding-top": settings.frameHeight/3,
+			height: this.settings.frameHeight * 4/3,
+			//"padding-top": this.settings.frameHeight/3,
 			position: "absolute",
-			top: $(settings.frameSelector).position().top,
+			top: $(this.settings.frameSelector).position().top,
 			left: 0
 		}));
 	}
 	BubbleCloud3D.prototype.checkFrame = function(){
 		//create frame if it does not exist
-		if($(settings.frameSelector).size() == 0){
-			alert("frameId: \""+settings.frameId+"\" could not be found!");
+		if($(this.settings.frameSelector).size() == 0){
+			alert("frameId: \""+this.settings.frameId+"\" could not be found!");
 			return false;
 		}
 		return true;
 	}
-	BubbleCloud3D.prototype.init = function(options){
-		this.bubbles = [];
-		
-		if (options) {
-			settings.angularSpeed = options.angularSpeed || settings.angularSpeed;
-			if(options.distributeBubblesRandomly !== undefined)
-				settings.distributeBubblesRandomly = options.distributeBubblesRandomly;
-			settings.frameId = options.frameId || settings.frameId;
-		}
-
-		settings.frameSelector = "#" + settings.frameId;
-
-		var el = $(settings.frameSelector)
-		var frameSize = Math.max(Math.min(el.width(), el.height()), 320);
-		settings.frameWidth = settings.frameHeight = settings.frameDepth = frameSize;
-		el.css({"font-size" : frameSize/12}).height(frameSize).width(frameSize);
-		console.log(frameSize);
-
-		var fixedLength = this.fixSizeForSphereBoundries(frameSize);
-		var extra = frameSize - fixedLength;
-		settings.origin = {};
-		settings.origin.x = settings.origin.y = settings.origin.z = (fixedLength + extra)/2;
-		 //= fixedLength/2;
-
-		this.numberOfBubbles = el.children().size();
-	}
 
 	BubbleCloud3D.prototype.fixSizeForSphereBoundries = function(edge){
-		// comes from the equation magnitude = sqrt(x^2 + y^2 + z^2)
+		// comes from the 3d vector equation:
+		//   magnitude = sqrt(x^2 + y^2 + z^2)
 		// so if i want to have my vectors to have the magnitude of "r"
 		// equation becomes magnitude = sqrt(3*r^2)
-		// Therefore magnitude/sqrt(3) = r
+		// Therefore; magnitude/sqrt(3) = r
 		var r = edge/Math.sqrt(3);
 		return r;
 	}
 
 	BubbleCloud3D.prototype.rotateBubbles = function(rotation_on_x, rotation_on_y){
 		for (var i = 0; i < this.bubbles.length; i++) {
-			this.bubbles[i].giveAngularRotationOnAxis(rotation_on_x, rotation_on_y);
+			this.bubbles[i].giveAngularRotationOnAxis(rotation_on_x, rotation_on_y, this.settings);
 		}
 	}
 
@@ -130,72 +126,86 @@
 		var halfQuarter = quarter/2;
 
 		//making the boundries a sphere
-		var frameSize = this.fixSizeForSphereBoundries(settings.frameWidth);
-		var extra = (settings.frameWidth - frameSize)/2;
+		var frameSize = this.fixSizeForSphereBoundries(this.settings.frameWidth);
+		var extra = (this.settings.frameWidth - frameSize)/2;
 		
 		for (var i = 0; i < this.numberOfBubbles; i++) {
 			var x = (Math.random() + parseInt(i/half)) * frameSize/2 + extra;
 			var y = (Math.random() + parseInt((i/quarter) % 2)) * frameSize/2 + extra;
 			var z = (Math.random() + parseInt((i/halfQuarter) % 2)) * frameSize/2 + extra;
 
-			var content = $(settings.frameSelector).children().eq(i).html();
-			
-			var vector = new Vector3D(x, y, z, content);
-			this.bubbles.push(vector);
+			var content = $(this.settings.frameSelector).children().eq(i).html();
+			var vector = new Vector3D(x, y, z, this.settings);
+			var bubble = new Bubble(vector, content, this.settings);
+			this.bubbles.push(bubble);
 		}
 	}
 
 	BubbleCloud3D.prototype.createRandomlyDistributedBubbles = function(){
 		//making the boundries a sphere
-		var frameSize = this.fixSizeForSphereBoundries(settings.frameWidth);
-		var extra = settings.frameWidth - frameSize;
+		var frameSize = this.fixSizeForSphereBoundries(this.settings.frameWidth);
+		var extra = this.settings.frameWidth - frameSize;
 		//create bubbles randomly
 		for (var i = 0; i < this.numberOfBubbles; i++) {
 			var x = Math.random() * frameSize + extra/2;
 			var y = Math.random() * frameSize + extra/2;
 			var z = Math.random() * frameSize + extra/2;
 
-			var content = $(settings.frameSelector).children().eq(i).html();
-			
-			var vector = new Vector3D(x, y, z, content);
-			this.bubbles.push(vector);
+			var content = $(this.settings.frameSelector).children().eq(i).html();
+			var vector = new Vector3D(x, y, z, this.settings);
+			var bubble = new Bubble(vector, content, this.settings);
+			this.bubbles.push(bubble);
 		}
 	}
 
+	function Bubble(vector, content, settings){
+		this.vector = vector;
+		this.content = content || (vector.x + ", " + vector.y + ", " + vector.z);;
 
-	function Vector3D(x, y, z, content){
-		this.x = x - settings.origin.x;
-		this.y = y - settings.origin.y;
-		this.z = z - settings.origin.z;
-		
-		// round the values so human can read easily
-		this.roundCoordinates();
-
-		this.content = content || (this.x + ", " + this.y + ", " + this.z);
-
-		var sizePercentage = ((settings.origin.z + this.z) / settings.frameDepth);
+		var sizePercentage = ((settings.origin.z + this.vector.z) / settings.frameDepth);
 		var size = (settings.frameWidth/2) * sizePercentage;
 
 		this.element = $("<div>").addClass("bubble")
 			.css("position", "absolute")
-			.text(this.content);
+			.html(this.content);
 
-		this.animate();
-
+		this.animate(settings);
 		this.refreshAngles();
 	}
 
-	Vector3D.prototype.refreshAngles = function(){
-		this.xAngle = Math.acos( this.x / this.getMagnitude() ) * 1/ONE_DEGREE;
-		this.yAngle = Math.acos( this.y / this.getMagnitude() ) * 1/ONE_DEGREE;
-		this.zAngle = Math.acos( this.z / this.getMagnitude() ) * 1/ONE_DEGREE;
+	var isAnimating = false;
+	Bubble.prototype.animate = function(settings){
+		//performance tweak
+		if (isAnimating) return;
+		isAnimating = true;
+
+		var sizePercentage = Math.max((settings.origin.z + this.vector.z) / settings.frameDepth, 0.2);
+		var size = (settings.frameWidth/2) * sizePercentage;
+		
+		//set elements position
+		this.element.css({
+			top: settings.origin.x + this.vector.x - size/2,
+			left: settings.origin.y + this.vector.y - size/2,
+			zIndex: settings.origin.z + this.vector.z,
+			width: size,
+			height: size,
+			"border-radius": size*2/3,
+			"font-size": sizePercentage + "em",
+			"line-height": size + "px"
+		})
+		// uncomment following for debug
+		//.text(size);
+		//this.refreshAngles();
+		isAnimating = false;
 	}
 
-	Vector3D.prototype.getMagnitude = function(){
-		return Math.sqrt(this.x*this.x + this.y*this.y + this.z*this.z);
+	Bubble.prototype.refreshAngles = function(){
+		this.vector.xAngle = Math.acos( this.vector.x / this.vector.getMagnitude() ) * 1/ONE_DEGREE;
+		this.vector.yAngle = Math.acos( this.vector.y / this.vector.getMagnitude() ) * 1/ONE_DEGREE;
+		this.vector.zAngle = Math.acos( this.vector.z / this.vector.getMagnitude() ) * 1/ONE_DEGREE;
 	}
 
-	Vector3D.prototype.giveAngularRotationOnAxis = function(x, y){
+	Bubble.prototype.giveAngularRotationOnAxis = function(x, y, settings){
 		if(!x) x = 0;
 		if(!y) y = 0;
 
@@ -203,52 +213,43 @@
 		var rotation_on_y = y * ONE_DEGREE;
 
 		//rotate on X axis:
-		var yHat = this.y * Math.cos(rotation_on_x) - this.z * Math.sin(rotation_on_x);
-		var zHat = this.y * Math.sin(rotation_on_x) + this.z * Math.cos(rotation_on_x);
-		this.y = yHat;
-		this.z = zHat;
+		var yHat = this.vector.y * Math.cos(rotation_on_x) - this.vector.z * Math.sin(rotation_on_x);
+		var zHat = this.vector.y * Math.sin(rotation_on_x) + this.vector.z * Math.cos(rotation_on_x);
+		this.vector.y = yHat;
+		this.vector.z = zHat;
 
 		//rotate on Y axis:
-		var xHat2 = this.x * Math.cos(rotation_on_y) + this.z  * Math.sin(rotation_on_y);
-		var zHat2 = -this.x * Math.sin(rotation_on_y) + this.z * Math.cos(rotation_on_y);
-		this.x = xHat2;
-		this.z = zHat2;
+		var xHat2 = this.vector.x * Math.cos(rotation_on_y) + this.vector.z  * Math.sin(rotation_on_y);
+		var zHat2 = -this.vector.x * Math.sin(rotation_on_y) + this.vector.z * Math.cos(rotation_on_y);
+		this.vector.x = xHat2;
+		this.vector.z = zHat2;
 		
 		// round the values so human can read easily
-		this.roundCoordinates();
+		this.vector.roundCoordinates();
 
-		this.animate();
+		this.animate(settings);
 
 		this.refreshAngles();
 	}
-	var isAnimating = false;
-	Vector3D.prototype.animate = function(){
-		//performance tweak
-		if (isAnimating) return;
-		isAnimating = true;
 
-		var sizePercentage = Math.max((settings.origin.z + this.z) / settings.frameDepth, 0.2);
-		var size = (settings.frameWidth/2) * sizePercentage;
+
+	function Vector3D(x, y, z, settings){
+		this.x = x - settings.origin.x;
+		this.y = y - settings.origin.y;
+		this.z = z - settings.origin.z;
 		
-		//set elements position
-		this.element.css({
-			top: settings.origin.x + this.x - size/2,
-			left: settings.origin.y + this.y - size/2,
-			zIndex: settings.origin.z + this.z,
-			width: size,
-			height: size,
-			"border-radius": size*2/3,
-			"font-size": sizePercentage + "em",
-			"line-height": size + "px"
-		})
-		//.text(size);
-		isAnimating = false;
+		// round the values so human can read easily
+		this.roundCoordinates();
 	}
 
 	Vector3D.prototype.roundCoordinates = function(){
 		this.x = Math.round(this.x);
 		this.y = Math.round(this.y);
 		this.z = Math.round(this.z);
+	}
+
+	Vector3D.prototype.getMagnitude = function(){
+		return Math.sqrt(this.x*this.x + this.y*this.y + this.z*this.z);
 	}
 
 }( jQuery ));
