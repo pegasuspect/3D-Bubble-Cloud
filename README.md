@@ -1,4 +1,4 @@
-# 3D-Bubble-Cloud
+# 3D Bubble Cloud
 A jQuery plugin for creating 3D bubble cloud with rotation ability.
 
 #Installation
