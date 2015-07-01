@@ -2,7 +2,7 @@
 A jQuery plugin for creating 3D bubble cloud with rotation ability.
 
 #Installation
-To use it simply download the `BubbleCloud3D.js` file with the `BubbleCloud3D.css` file. Then in your html file link to them. 
+To use it simply download the `BubbleCloud3D.js` file with the `BubbleCloud3D.css` file. Then in your html file link to them use:
 ```html
 <script src="js/BubbleCloud3D.js"></script>
 <link rel="stylesheet" href="css/BubbleCloud3D.css">
