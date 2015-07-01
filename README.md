@@ -12,7 +12,7 @@ With jQuery select element(s) and just use the method, create3DBubbleCloud()
 
 ```js
 $(function(){
-  $(".frame").creat3DBubbleCloud();
+  $(".frame").create3DBubbleCloud();
 });
 ```
 
@@ -28,7 +28,7 @@ var options = {
   showBubblesOutOfFrameBorders: false, // defaults to true
 }
 $(function(){
-  $(".frame").creat3DBubbleCloud(options);
+  $(".frame").create3DBubbleCloud(options);
 });
 ```
 
