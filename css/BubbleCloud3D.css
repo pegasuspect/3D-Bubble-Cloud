@@ -1,0 +1,27 @@
+
+
+#frame {
+    position: relative;
+    width: 1200px;
+    height: 400px;
+    border: 1px dashed;
+    margin: 40px auto;
+    overflow: visible;
+    text-align: center;
+    font-size: 22px;
+}
+
+.noTextSelect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.bubble {
+  background-color: rgba(166, 199, 18, 0.83);
+  color: #333;
+  text-align: center;
+}

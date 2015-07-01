@@ -3,12 +3,11 @@
 
 	var ONE_DEGREE = Math.PI/180;
 
-	$.fn.creat3DBubbleCloud = function(options) {
+	$.fn.create3DBubbleCloud = function(options) {
 		settings = $.extend({
             angularSpeed: 0.5,
 			distributeBubblesRandomly: false,
-			showBubblesOutOfFrameBorders: true,
-			frameId: "frame"
+			showBubblesOutOfFrameBorders: true
         }, options );
 
 		return this.each(function(index, el) {
