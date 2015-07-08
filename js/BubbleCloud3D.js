@@ -186,7 +186,7 @@ function Bubble(vector, content, settings){
 		"translateZ("+(this.vector.z*3)+"px) ";
 	this.element = jQuery("<div>").addClass("bubble noTextSelect").html(this.content)
 		.css({
-			"-webkit-transform" : pos,
+			"transform" : pos,
 			top: (settings.frameHeight - size)/2,
 			left: (settings.frameWidth - size)/2,
 			width: size,
@@ -211,7 +211,7 @@ Bubble.prototype.updatePosition = function(){
 	var pos = "translateX("+(this.vector.x)+"px) " + 
 		"translateY("+(this.vector.y)+"px) " + 
 		"translateZ("+(this.vector.z*3)+"px) ";
-	this.element.css("-webkit-transform", pos);
+	this.element.css("transform", pos);
 }
 
 Bubble.prototype.giveAngularRotationOnAxis = function(x, y){
