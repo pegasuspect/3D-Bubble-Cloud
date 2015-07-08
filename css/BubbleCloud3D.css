@@ -1,5 +1,7 @@
 .scene3d{
   -webkit-perspective: 1000px;
+  -ms-perspective: 1000px;
+  perspective: 1000px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -9,6 +11,8 @@
   width: inherit;
   height: inherit;
   -webkit-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  transform-style: preserve-3d;
 }
 
 .noTextSelect {
