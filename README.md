@@ -19,7 +19,7 @@ To use it simply download the `BubbleCloud3D.js` file with the `BubbleCloud3D.cs
 
 #Usage
 With jQuery select elements and just use the method, to3DBubbleCloud()
-###Example wrappers
+####Example wrappers:
 ```html
 <ul class="frame">
     <li>Lorem</li>
@@ -52,6 +52,7 @@ With jQuery select elements and just use the method, to3DBubbleCloud()
   <span>frame</span>
 </div>
 ```
+####Javascript method to convert them:
 ```js
 $(function(){
   //assuming wrapper of the list has "frame" class
