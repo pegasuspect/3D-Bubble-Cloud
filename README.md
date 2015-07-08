@@ -18,12 +18,12 @@ To use it simply download the `BubbleCloud3D.js` file with the `BubbleCloud3D.cs
 - [hammer.js](http://hammerjs.github.io/)
 
 #Usage
-With jQuery select elements and just use the method, create3DBubbleCloud()
+With jQuery select elements and just use the method, to3DBubbleCloud()
 
 ```js
 $(function(){
   //assuming wrapper of the list has "frame" class
-  $(".frame").create3DBubbleCloud();
+  $(".frame").to3DBubbleCloud();
 });
 ```
 
@@ -42,7 +42,7 @@ var options = {
 }
 $(function(){
   //assuming wrapper of the list has "frame" class
-  $(".frame").create3DBubbleCloud(options);
+  $(".frame").to3DBubbleCloud(options);
 });
 ```
 
