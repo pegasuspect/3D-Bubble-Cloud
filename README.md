@@ -1,7 +1,10 @@
 # 3D Bubble Cloud
 A jQuery plugin for creating 3D bubble cloud with rotation ability.
-Live demo and tests [here.](http://noge-commerce.com/projects/3D-Bubble-Cloud/ "Test Page")
-
+Live demo and tests 
+<a href="http://noge-commerce.com/projects/3D-Bubble-Cloud/" target="_blank">
+    here.
+    <img src="http://exchangeleads.io/wp-content/uploads/2015/06/demo.jpg">
+</a>
 #Installation
 To use it simply download the `BubbleCloud3D.js` file with the `BubbleCloud3D.css` file. Then in your html file link to them. For example:
 ```html
