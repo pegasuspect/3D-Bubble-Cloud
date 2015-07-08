@@ -196,6 +196,8 @@ $("#hideBubblesOutOfFrame")
 var options = {
     angularSpeedMultiplier: 3, 
     // default is 1
+    maxAngularSpeed: 24, 
+    //defaults to 8
     showBubblesOutOfFrameBorders: false 
     // default is true
 }
@@ -231,6 +233,8 @@ $("#fasterBubbles")
 var options = {
     angularSpeedMultiplier: 3, 
     // default is 1
+    maxAngularSpeed: 24, 
+    //defaults to 8
     showBubblesOutOfFrameBorders: false, 
     // default is true
     distributeBubblesRandomly: true 
@@ -279,13 +283,15 @@ $("#randomDistribution")
         $("#hideBubblesOutOfFrame").to3DBubbleCloud(options);
 
         var options = {
-            angularSpeedMultiplier: 3, // default is 50
+            angularSpeedMultiplier: 3, // default is 1
+            maxAngularSpeed: 24, //defaults to 8
             showBubblesOutOfFrameBorders: false // default is true
         }
         $("#fasterBubbles").to3DBubbleCloud(options);
 
         var options = {
-            angularSpeedMultiplier: 3, // default is 50
+            angularSpeedMultiplier: 3, // default is 1
+            maxAngularSpeed: 24, //defaults to 8
             showBubblesOutOfFrameBorders: false, // default is true
             distributeBubblesRandomly: true // default is false
         }

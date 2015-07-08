@@ -18,6 +18,7 @@ function BubbleCloud3D(options){
 BubbleCloud3D.prototype.init = function(options){
 	this.settings = $.extend({
         angularSpeedMultiplier: 1,
+        maxAngularSpeed: 8,
 		distributeBubblesRandomly: false,
 		showBubblesOutOfFrameBorders: true
     }, options );
@@ -61,10 +62,10 @@ BubbleCloud3D.prototype.attachEventHandlerToFrameMask = function(){
 
 		var pointer = ev.pointers[0];
 		//set top angular speed to 10 degrees
-		var x = (pointer.clientX - startX)/ev.deltaTime * 50;
-		var y = -(pointer.clientY - startY)/ev.deltaTime * 50;
+		var x = (pointer.clientX - startX)/ev.deltaTime * 50 * that.settings.angularSpeedMultiplier;
+		var y = -(pointer.clientY - startY)/ev.deltaTime * 50 * that.settings.angularSpeedMultiplier;
 		var newSpeed = checkSpeed([x, y]);
-		newSpeed = newSpeed.map(function(item){ return item*that.settings.angularSpeedMultiplier });
+
 	    that.rotateBubbles(newSpeed[0], newSpeed[1]);
 	});
 
@@ -76,7 +77,7 @@ BubbleCloud3D.prototype.attachEventHandlerToFrameMask = function(){
 	}
 
 	var checkSpeed = function(speed){
-		var topSpeed = 8; //degrees
+		var topSpeed = that.settings.maxAngularSpeed; //degrees
 		if (speed[0] > topSpeed) speed[0] = topSpeed;
 		if (speed[0] < -topSpeed) speed[0] = -topSpeed;
 		if (speed[1] > topSpeed) speed[1] = topSpeed;
@@ -171,7 +172,7 @@ function Bubble(vector, content, settings){
 	this.vector = vector;
 	this.content = content || (vector.x + ", " + vector.y + ", " + vector.z);;
 
-	this.normailizeVectorTo(settings.frameWidth/2 * 0.75);
+	this.normalizeVectorTo(settings.frameWidth/2 * 0.75);
 
 	var sizePercentage = ((settings.origin.z + this.vector.z) / settings.frameDepth);
 	var size = (settings.frameWidth/2) * sizePercentage;
@@ -195,7 +196,7 @@ function Bubble(vector, content, settings){
 		});
 
 }
-Bubble.prototype.normailizeVectorTo = function(r){
+Bubble.prototype.normalizeVectorTo = function(r){
 	var magnitude = this.vector.getMagnitude();
 	var xHat = (this.vector.x / magnitude) * r;
 	var yHat = (this.vector.y / magnitude) * r;
@@ -275,27 +276,6 @@ jQuery.fn.to3DBubbleCloud = function(options) {
         }).addClass("borderFrame");
     });
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
