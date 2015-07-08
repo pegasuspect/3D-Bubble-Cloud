@@ -23,9 +23,9 @@ You may specify custom settings for:
 
 ```js
 var options = {
-  angularSpeed: 0.1, //defaults to 0.5
-  distributeBubblesRandomly: true, // defaults to false
-  showBubblesOutOfFrameBorders: false, // defaults to true
+    angularSpeedMultiplier: 3, // default is 50
+    showBubblesOutOfFrameBorders: false, // default is true
+    distributeBubblesRandomly: true // default is false
 }
 $(function(){
   $(".frame").create3DBubbleCloud(options);
