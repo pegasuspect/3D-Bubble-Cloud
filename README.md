@@ -6,7 +6,7 @@ Live demo and tests [here.](http://noge-commerce.com/projects/3D-Bubble-Cloud/ "
 To use it simply download the `BubbleCloud3D.js` file with the `BubbleCloud3D.css` file. Then in your html file link to them. For example:
 ```html
 <!-- External Libraries -->
-<script src="js/vendor/jquery-1.11.3.min.js"><\/script>
+<script src="js/vendor/jquery-1.11.3.min.js"></script>
 <script src="js/vendor/hammer.js"></script>
 
 <!-- Bubble Cloud 3D -->
@@ -14,8 +14,8 @@ To use it simply download the `BubbleCloud3D.js` file with the `BubbleCloud3D.cs
 <link rel="stylesheet" href="css/BubbleCloud3D.css">
 ```
 #Dependencies
-- (jQuery)[http://jquery.com/]
-- (hammer.js)[http://hammerjs.github.io/]
+- [jQuery](http://jquery.com/)
+- [hammer.js](http://hammerjs.github.io/)
 
 #Usage
 With jQuery select elements and just use the method, create3DBubbleCloud()
