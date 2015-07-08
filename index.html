@@ -1,92 +1,297 @@
 <!doctype html>
 <html class="no-js" lang="">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" href="css/BubbleCloud3D.css">
-        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
-    </head>
-    <body>
-        <!--[if lt IE 8]>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/BubbleCloud3D.css">
+    <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+    <!-- Using Hammer.JS for touch event handling -->
+    <script src="js/vendor/hammer.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+    window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')
+    </script>
+</head>
+
+<body>
+    <a href="https://github.com/pegasuspect/3D-Bubble-Cloud">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
+    </a>
+    <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-
-        <!-- Add your site or application content here -->
-        <h1>Test Page</h1>
-        <ul id="frame" class="frame">
-            <li>Lorem</li>
-            <li>ipsum</li>
-            <li>dolor</li>
-            <li>sit</li>
-            <li>amet,</li>
-            <li>consectetur</li>
-            <li>adipiscing</li>
-            <li>elit,</li>
-            <li>sed</li>
-            <li>do</li>
-            <li>eiusmod</li>
-            <li>tempor</li>
-            <li>incididunt</li>
-            <li>ut</li>
-            <li>labore</li>
-            <li>et</li>
-            <li>dolore</li>
-            <li>magna</li>
-            <li>aliqua.</li>
-            <li>Ut</li>
-        </ul>
-
-        <ul class="frame">
-            <li>Lorem</li>
-            <li>ipsum</li>
-            <li>dolor</li>
-            <li>sit</li>
-            <li>amet,</li>
-            <li>consectetur</li>
-            <li>adipiscing</li>
-            <li>elit,</li>
-            <li>sed</li>
-            <li>do</li>
-            <li>eiusmod</li>
-            <li>tempor</li>
-            <li>incididunt</li>
-            <li>ut</li>
-            <li>labore</li>
-            <li>et</li>
-            <li>dolore</li>
-            <li>magna</li>
-            <li>aliqua.</li>
-            <li>Ut</li>
-        </ul>
-        <div class="frame">
-            <script id="imageGenerator" type="text/javascript">
+    <br class="hide showLT460">
+    <br class="hide showLT460">
+    <br class="hide showLT460">
+    <h1>Test Page v0.3</h1>
+    <ol>
+        <li>
+            <h3>Regular Bubble Cloud with 20 Elements</h3>
+            <ul id="frame" class="frame borderFrame">
+                <li>Lorem</li>
+                <li>ipsum</li>
+                <li>dolor</li>
+                <li>sit</li>
+                <li>amet,</li>
+                <li>consectetur</li>
+                <li>adipiscing</li>
+                <li>elit,</li>
+                <li>sed</li>
+                <li>do</li>
+                <li>eiusmod</li>
+                <li>tempor</li>
+                <li>incididunt</li>
+                <li>ut</li>
+                <li>labore</li>
+                <li>et</li>
+                <li>dolore</li>
+                <li>magna</li>
+                <li>aliqua.</li>
+                <li>Ut</li>
+            </ul>
+        </li> 
+        <li>
+            <h3>Regular Bubble Cloud with 80 Elements</h3>
+            <ul class="frame borderFrame">
+                <li>Lorem</li>
+                <li>ipsum</li>
+                <li>dolor</li>
+                <li>sit</li>
+                <li>amet,</li>
+                <li>consectetur</li>
+                <li>adipiscing</li>
+                <li>elit,</li>
+                <li>sed</li>
+                <li>do</li>
+                <li>eiusmod</li>
+                <li>tempor</li>
+                <li>incididunt</li>
+                <li>ut</li>
+                <li>labore</li>
+                <li>et</li>
+                <li>dolore</li>
+                <li>magna</li>
+                <li>aliqua.</li>
+                <li>Ut</li>
+                <li>Lorem</li>
+                <li>ipsum</li>
+                <li>dolor</li>
+                <li>sit</li>
+                <li>amet,</li>
+                <li>consectetur</li>
+                <li>adipiscing</li>
+                <li>elit,</li>
+                <li>sed</li>
+                <li>do</li>
+                <li>eiusmod</li>
+                <li>tempor</li>
+                <li>incididunt</li>
+                <li>ut</li>
+                <li>labore</li>
+                <li>et</li>
+                <li>dolore</li>
+                <li>magna</li>
+                <li>aliqua.</li>
+                <li>Ut</li>
+                <li>Lorem</li>
+                <li>ipsum</li>
+                <li>dolor</li>
+                <li>sit</li>
+                <li>amet,</li>
+                <li>consectetur</li>
+                <li>adipiscing</li>
+                <li>elit,</li>
+                <li>sed</li>
+                <li>do</li>
+                <li>eiusmod</li>
+                <li>tempor</li>
+                <li>incididunt</li>
+                <li>ut</li>
+                <li>labore</li>
+                <li>et</li>
+                <li>dolore</li>
+                <li>magna</li>
+                <li>aliqua.</li>
+                <li>Ut</li>
+                <li>Lorem</li>
+                <li>ipsum</li>
+                <li>dolor</li>
+                <li>sit</li>
+                <li>amet,</li>
+                <li>consectetur</li>
+                <li>adipiscing</li>
+                <li>elit,</li>
+                <li>sed</li>
+                <li>do</li>
+                <li>eiusmod</li>
+                <li>tempor</li>
+                <li>incididunt</li>
+                <li>ut</li>
+                <li>labore</li>
+                <li>et</li>
+                <li>dolore</li>
+                <li>magna</li>
+                <li>aliqua.</li>
+                <li>Ut</li>
+            </ul>
+        </li>
+        <li>
+            <h3>Bubble Cloud with Images</h3>
+            <div class="frame borderFrame">
+                <script id="imageGenerator" type="text/javascript">
                 var html = "";
                 for (var i = 0; i < 10; i++) {
                     html += "<div><img src='http://placehold.it/" + 200 * (i % 2 + 1) + "x150'></div>";
                 }
+                //write html
                 document.write(html);
-                $("script#imageGenerator").remove();
-            </script>
-        </div>
 
-        <div style="text-align: center;margin: 250px auto 40px;">
-            <small>Note that this code is written to work with touch devices where 
-                mousemove event fires while moving the thumb on the screen.</small>
-        </div>
-        <script src="js/plugins.js"></script>
-        <script src="js/BubbleCloud3D.js"></script>
-        <script type="text/javascript">
-            $(function(){
-                $(".frame").create3DBubbleCloud();
-            });
-        </script>
-    </body>
+                //destroy this script tag
+                $("script#imageGenerator").remove();
+                </script>
+            </div>
+        </li>
+        <li>
+            <h3>Hide Bubbles out of frame</h3>
+            <pre>
+var options = {
+    showBubblesOutOfFrameBorders: false 
+    // default is true
+}
+$("#hideBubblesOutOfFrame")
+.to3DBubbleCloud(options);
+            </pre>
+            <ul id="hideBubblesOutOfFrame" class="borderFrame">
+                <li>Lorem</li>
+                <li>ipsum</li>
+                <li>dolor</li>
+                <li>sit</li>
+                <li>amet,</li>
+                <li>consectetur</li>
+                <li>adipiscing</li>
+                <li>elit,</li>
+                <li>sed</li>
+                <li>do</li>
+                <li>eiusmod</li>
+                <li>tempor</li>
+                <li>incididunt</li>
+                <li>ut</li>
+                <li>labore</li>
+                <li>et</li>
+                <li>dolore</li>
+                <li>magna</li>
+                <li>aliqua.</li>
+                <li>Ut</li>
+            </ul>
+        </li>
+        <li>
+            <h3>Faster rotation (3 times)</h3>
+            <pre>
+var options = {
+    angularSpeedMultiplier: 3, 
+    // default is 1
+    showBubblesOutOfFrameBorders: false 
+    // default is true
+}
+$("#fasterBubbles")
+.to3DBubbleCloud(options);
+            </pre>
+            <ul id="fasterBubbles" class="borderFrame">
+                <li>Lorem</li>
+                <li>ipsum</li>
+                <li>dolor</li>
+                <li>sit</li>
+                <li>amet,</li>
+                <li>consectetur</li>
+                <li>adipiscing</li>
+                <li>elit,</li>
+                <li>sed</li>
+                <li>do</li>
+                <li>eiusmod</li>
+                <li>tempor</li>
+                <li>incididunt</li>
+                <li>ut</li>
+                <li>labore</li>
+                <li>et</li>
+                <li>dolore</li>
+                <li>magna</li>
+                <li>aliqua.</li>
+                <li>Ut</li>
+            </ul>
+        </li>
+        <li>
+            <h3>Distribute bubbles randomly</h3>
+            <pre>
+var options = {
+    angularSpeedMultiplier: 3, 
+    // default is 1
+    showBubblesOutOfFrameBorders: false, 
+    // default is true
+    distributeBubblesRandomly: true 
+    // default is false
+}
+$("#randomDistribution")
+.to3DBubbleCloud(options);
+            </pre>
+            <ul id="randomDistribution">
+                <li>Lorem</li>
+                <li>ipsum</li>
+                <li>dolor</li>
+                <li>sit</li>
+                <li>amet,</li>
+                <li>consectetur</li>
+                <li>adipiscing</li>
+                <li>elit,</li>
+                <li>sed</li>
+                <li>do</li>
+                <li>eiusmod</li>
+                <li>tempor</li>
+                <li>incididunt</li>
+                <li>ut</li>
+                <li>labore</li>
+                <li>et</li>
+                <li>dolore</li>
+                <li>magna</li>
+                <li>aliqua.</li>
+                <li>Ut</li>
+            </ul>
+        </li>
+    </ol>
+    <div id="bottomNotice">
+        <small>Note that this code is written to work especially on touch devices where 
+                <a href="http://hammerjs.github.io">hammerJS</a> is used for the purpose.</small>
+    </div>
+    <script src="js/plugins.js"></script>
+    <script src="js/BubbleCloud3D.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        $(".frame").to3DBubbleCloud();
+
+        var options = {
+            showBubblesOutOfFrameBorders: false // default is true
+        }
+        $("#hideBubblesOutOfFrame").to3DBubbleCloud(options);
+
+        var options = {
+            angularSpeedMultiplier: 3, // default is 50
+            showBubblesOutOfFrameBorders: false // default is true
+        }
+        $("#fasterBubbles").to3DBubbleCloud(options);
+
+        var options = {
+            angularSpeedMultiplier: 3, // default is 50
+            showBubblesOutOfFrameBorders: false, // default is true
+            distributeBubblesRandomly: true // default is false
+        }
+        $("#randomDistribution").to3DBubbleCloud(options);
+    });
+    </script>
+</body>
+
 </html>

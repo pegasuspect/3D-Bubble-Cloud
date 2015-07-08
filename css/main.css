@@ -96,19 +96,7 @@ textarea {
    ========================================================================== */
 
 
-
-#frame {
-    position: relative;
-    width: 1200px;
-    height: 400px;
-    border: 1px dashed;
-    margin: 40px auto;
-    overflow: visible;
-    text-align: center;
-    font-size: 22px;
-}
-
-.noTextSelect {
+* {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -116,26 +104,95 @@ textarea {
   -ms-user-select: none;
   user-select: none;
 }
+pre{
+  -webkit-touch-callout: initial;
+  -webkit-user-select: initial;
+  -khtml-user-select: initial;
+  -moz-user-select: initial;
+  -ms-user-select: initial;
+  user-select: initial;
+}
 
-.bubble {
-  background-color: rgba(166, 199, 18, 0.83);
-  color: #333;
+.hide{
+  display: none;
+}
+#bottomNotice{
   text-align: center;
+  margin: 0 20px;
+  margin-top: 80px;
+  margin-bottom: 40px;
+}
+
+#frame {
+  
+}
+.borderFrame{
+  width: 320px;
+  height: 320px;
+  border: 1px dashed;
 }
 
 h1 {
   text-align: center;
 }
+h3 {
+  margin-left: 1em;
+  font-size: 1.2em;
+  text-align: left;
+}
+ol {
+  counter-reset:li; /* Initiate a counter */
+  padding: 0 10px;
+  text-align: center;
+}
+ol > li {
+  position:relative; /* Create a positioning context */
+  padding:4px 8px; /* Add some spacing around the content */
+  list-style:none; /* Disable the normal item numbering */
+  display:inline-block;
+  vertical-align: top;
+  text-align: center;
+  margin: 0 10px;
+  margin-bottom: 20px;
+  width: 320px;
+}
+ol > li:before {
+  content: counter(li) ".";
+  counter-increment: li;
+  position: absolute;
+  top: 1em;
+  left: 0;
+  font-size: 1.2em;
+  width: 1em;
+  margin-right: 8px;
+  padding: 4px;
+  font-weight: bold;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  text-align: center;
+}
+li ol,
+li ul {margin-top:6px;}
+ol ol li:last-child {margin-bottom:0;}
 
-ul {
-    list-style: none;
+pre{
+  font-size: 0.7em;
+  background-color: #ECECEC;
+  padding: 10px 20px 0px;
+  text-align: left;
 }
 
-ul > li {
-    display: inline-block;
+@media screen and (max-width: 460px) {
+  .showLT460{
+    display: initial;
+  }
+  ol > li{
+    margin: 0;
+  }
+  ol{
+    margin: 0;
+    padding: 0;
+  }
 }
-
-
 
 /* ==========================================================================
    Helper classes
