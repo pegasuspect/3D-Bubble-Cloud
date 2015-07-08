@@ -95,6 +95,12 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+.text-center{
+  text-align: center;
+}
+.red{
+  color: red;
+}
 
 * {
   -webkit-touch-callout: none;

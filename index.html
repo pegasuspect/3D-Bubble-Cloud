@@ -30,6 +30,7 @@
     <br class="hide showLT460">
     <br class="hide showLT460">
     <h1>Test Page v0.3</h1>
+    <div class="text-center"><big>Drag bubbles to rotate.</big></div>
     <ol>
         <li>
             <h3>Regular Bubble Cloud with 20 Elements</h3>
@@ -228,7 +229,7 @@ $("#fasterBubbles")
             </ul>
         </li>
         <li>
-            <h3>Distribute bubbles randomly</h3>
+            <h3>Distribute bubbles randomly<sup class="red">*</sup></h3>
             <pre>
 var options = {
     angularSpeedMultiplier: 3, 
@@ -268,7 +269,9 @@ $("#randomDistribution")
         </li>
     </ol>
     <div id="bottomNotice">
-        <small>Note that this code is written to work especially on touch devices where 
+        <small><span class="red">*</span>Without any options set, the bubbles are created evenly in 8 sections of a sphere with r = frame width/2. The sections are calculated by slicing sphere on x,y,z planes. In these 8 divisions, number of bubbles are equal but bubbles are still placed randomly.
+        If <i>distributeBubblesRandomly</i> is set to <b>true</b> bubbles are placed in random locations without any division placement.</small><br>
+        <small>Also note that this code is written to work especially on touch devices where 
                 <a href="http://hammerjs.github.io">hammerJS</a> is used for the purpose.</small>
     </div>
     <script src="js/plugins.js"></script>
