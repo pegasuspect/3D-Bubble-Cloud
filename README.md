@@ -17,7 +17,7 @@ $(function(){
 ```
 
 You may specify custom settings for:
-- angularSpeed
+- angularSpeedMultiplier
 - distributeBubblesRandomly
 - showBubblesOutOfFrameBorders
 
