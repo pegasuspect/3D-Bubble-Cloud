@@ -23,7 +23,7 @@ You may specify custom settings for:
 
 ```js
 var options = {
-    angularSpeedMultiplier: 3, // default is 50
+    angularSpeedMultiplier: 3, // default is 1
     showBubblesOutOfFrameBorders: false, // default is true
     distributeBubblesRandomly: true // default is false
 }
