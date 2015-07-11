@@ -209,7 +209,7 @@ Bubble.prototype.updatePosition = function() {
     this.element.css(this.getNewLocationCSS());
 }
 
-Bubble.prototype.getNewLocationCSS(){
+Bubble.prototype.getNewLocationCSS = function(){
 	//z is multiplied with 3 to create more depth to bubbles
 	var pos = "translate3d(" + (this.vector.x) + "px, " + (this.vector.y) + "px, " + (this.vector.z * 3) + "px) ";
 	return {
