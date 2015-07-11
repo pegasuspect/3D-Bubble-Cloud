@@ -1,13 +1,16 @@
 {
-  "name": "Buble Word Cloud",
-  "version": "0.0.0",
+  "name": "3d-bubble-cloud",
   "homepage": "http://noge-commerce.com/projects/3D-Bubble-Cloud/",
   "authors": [
-    "pegasuspect <osmansekerlen@gmail.com>"
+    "Osman Şekerlen <osmansekerlen@gmail.com> (osmansekerlen.com)"
   ],
   "dependencies": {
     "hammerjs": "latest",
     "jQuery": "latest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/pegasuspect/3D-Bubble-Cloud.git"
   },
   "description": "A jQuery plugin for creating 3D bubble cloud with rotation ability",
   "main": "js/BubbleCloud3D.js, css/BubbleCloud3D.css",
@@ -27,10 +30,12 @@
   ],
   "license": "MIT",
   "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
+    ".gitignore",
+    "css/main.css",
+    "css/normalize.css",
+    "js/vendor",
+    "js/plugin.js",
+    "index.html",
+    "README.md"
   ]
 }
