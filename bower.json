@@ -28,14 +28,15 @@
     "bubbles",
     "css3"
   ],
+  "install" : {
+    "path" : {
+      "css": "css",
+      "js": "js"
+    }
+  },
   "license": "MIT",
   "ignore": [
     ".gitignore",
-    "css/main.css",
-    "css/normalize.css",
-    "js/vendor",
-    "js/plugins.js",
-    "index.html",
     "README.md"
   ]
 }
