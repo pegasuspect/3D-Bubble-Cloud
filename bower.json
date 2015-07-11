@@ -34,7 +34,7 @@
     "css/main.css",
     "css/normalize.css",
     "js/vendor",
-    "js/plugin.js",
+    "js/plugins.js",
     "index.html",
     "README.md"
   ]
