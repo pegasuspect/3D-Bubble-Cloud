@@ -84,3 +84,4 @@ $(function(){
 
 #Credits
 1. http://stackoverflow.com/a/14609567
+2. http://stackoverflow.com/a/5480292
