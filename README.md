@@ -7,7 +7,7 @@ Live demo and tests
 </a>
 # Installation
 ### Bower
-You can download this repo with dependencies with bower:
+You can download this repo with [dependencies](#dependencies) with bower:
 ```sh
 $ bower install bubble-cloud-3d
 ```
@@ -30,9 +30,6 @@ To use it simply download the `BubbleCloud3D.js` file with the `BubbleCloud3D.cs
 <script src="js/BubbleCloud3D.js"></script>
 <link rel="stylesheet" href="css/BubbleCloud3D.css">
 ```
-#Dependencies
-- [jQuery](http://jquery.com/)
-- [hammer.js](http://hammerjs.github.io/)
 
 #Usage
 With jQuery select elements and just use the method, to3DBubbleCloud()
@@ -95,6 +92,11 @@ $(function(){
   $(".frame").to3DBubbleCloud(options);
 });
 ```
+
+#Dependencies
+- [jQuery](http://jquery.com/)
+- [hammer.js](http://hammerjs.github.io/)
+
 
 #Credits
 1. http://stackoverflow.com/a/14609567
