@@ -11,20 +11,12 @@ You can download this repo with its [dependencies](#dependencies) using bower:
 ```sh
 $ bower install bubble-cloud-3d
 ```
-Then link to them in your html file:
-```html
-<script src="bower_components/hammerjs/hammer.js"></script>
-<script src="bower_components/jquery/dist/jquery.min.js"></script>
 
-<script src="bower_components/bubble-cloud-3d/js/BubbleCloud3D.js"></script>
-<link rel="stylesheet" href="bower_components/bubble-cloud-3d/css/BubbleCloud3D.css">
-```
-### Regular Download
-To use it simply download the `BubbleCloud3D.js` file with the `BubbleCloud3D.css` file. Then in your html file link to them. For example:
+Or you can simply download the `BubbleCloud3D.js` file with the `BubbleCloud3D.css` file. Then in your html file link to them. For example:
 ```html
 <!-- External Libraries -->
-<script src="jquery.min.js"></script>
-<script src="hammer.js"></script>
+<script src="bower_components/hammerjs/hammer.js"></script>
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
 
 <!-- Bubble Cloud 3D -->
 <script src="js/BubbleCloud3D.js"></script>
