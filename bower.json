@@ -31,7 +31,7 @@
   "license": "MIT",
   "ignore": [
     ".gitignore",
-    "bower_components"
+    "bower_components",
     "README.md"
   ]
 }
