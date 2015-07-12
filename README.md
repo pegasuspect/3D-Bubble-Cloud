@@ -7,7 +7,7 @@ Live demo and tests
 </a>
 # Installation
 ### Bower
-You can download this repo with [dependencies](#dependencies) with bower:
+You can download this repo with its [dependencies](#dependencies) using bower:
 ```sh
 $ bower install bubble-cloud-3d
 ```
