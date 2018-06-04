@@ -58,7 +58,7 @@ With jQuery select elements and just use the method, to3DBubbleCloud()
   <span>frame</span>
 </div>
 ```
-####Javascript method to convert them:
+#### Javascript method to convert them:
 ```js
 $(function(){
   //assuming wrapper of the list has "frame" class
