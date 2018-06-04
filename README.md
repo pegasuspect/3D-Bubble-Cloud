@@ -23,9 +23,9 @@ Or you can simply download the `BubbleCloud3D.js` file with the `BubbleCloud3D.c
 <link rel="stylesheet" href="css/BubbleCloud3D.css">
 ```
 
-#Usage
+# Usage
 With jQuery select elements and just use the method, to3DBubbleCloud()
-####Example wrappers:
+#### Example wrappers:
 ```html
 <ul class="frame">
     <li>Lorem</li>
@@ -85,11 +85,11 @@ $(function(){
 });
 ```
 
-#Dependencies
+# Dependencies
 - [jQuery](http://jquery.com/)
 - [hammer.js](http://hammerjs.github.io/)
 
 
-#Credits
+# Credits
 1. http://stackoverflow.com/a/14609567
 2. http://stackoverflow.com/a/5480292
